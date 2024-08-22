@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Futuro</title>
+    <style>
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2022/08/04/17/49/fields-7365217_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .header p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            padding: 20px;
+            width: 500px;
+        }
+
+        select, input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff6347;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Farm Futuro</h1>
+        <p>Welcome to Farm Futuro - a Machine Learning based crop recommendation System.</p>
+    </div>
+
+    <div class="glass">
+        <form>
+            <label for="states">States:</label>
+            <select id="states" name="states">
+                <option value="AndhraPradesh">Andhra Pradesh</option>
+                <option value="ArunachalPradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="HimachalPradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="MadhyaPradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="TamilNadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="UttarPradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="WestBengal">West Bengal</option>
+            </select>
+
+            <label for="divisions">DIVISIONS:</label>
+            <select id="divisions" name="divisions">
+                <option value="cereals">Cereals</option>
+                <option value="pulses">Pulses</option>
+                <option value="fruits">Fruits</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="oilseeds">Oilseeds</option>
+            </select>
+
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" name="temperature" placeholder="Enter Temperature">
+
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" name="humidity" placeholder="Enter Humidity">
+
+            <label for="ph">pH Level:</label>
+            <input type="number" id="ph" name="ph" placeholder="Enter pH Level">
+
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" id="rainfall" name="rainfall" placeholder="Enter Rainfall">
+
+            <input type="submit" value="Predict Crop">
+        </form>
+    </div>
+</body>
+</html>
