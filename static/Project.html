@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmFuturo</title>
+    <style>
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2022/08/04/17/49/fields-7365217_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    
+        .header {
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .header p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            padding: 20px;
+            width: 500px;
+        }
+    
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            color: #2E2E2E;
+            font-size: 14px;
+        }
+    
+        select, input[type="number"], input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"], button {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            padding: 15px 25px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #ff6347;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Farm Futuro</h1>
+        <p>Welcome to Farm Futuro - a Machine Learning based crop recommendation System.</p>
+    </div>
+
+    <div class="glass">
+        <form id="cropForm">
+            <label for="States">States:</label>
+            <select id="States" name="States" required>
+                <option value="AndhraPradesh">Andhra Pradesh</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="HimachalPradesh">Himachal Pradesh</option>
+                <option value="JammuKashmir">Jammu & Kashmir</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerela">Kerala</option>
+                <option value="MadhyaPradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="NorthEast">NorthEast</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="TamilNadu">Tamil Nadu</option>
+                <option value="Telengana">Telangana</option>
+                <option value="UttarPradesh">Uttar Pradesh</option>
+                <option value="West Bengal">West Bengal</option>
+            </select> 
+
+            <label for="divisions">DIVISIONS :</label>
+            <select id="divisions" name="DIVISIONS" required>
+                <option value="cashcrops">Cash Crops</option>
+                <option value="cereals">Cereals</option>
+                <option value="pulses">Pulses</option>
+                <option value="Fruits">Fruits</option>
+            </select>  
+
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" placeholder="Enter Temperature" name="temperature" required>
+
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity"  placeholder="Enter Humidity" name="humidity" required>
+
+            <label for="ph">pH Level:</label>
+            <input type="number" id="ph" name="ph" required placeholder="Enter pH Level">
+
+            <label for="rainfall">Rainfall (mm):</label>
+            <input type="number" id="rainfall" placeholder="Enter Rainfall" name="rainfall" required>
+                 
+            <button type="button" onclick="predictCrop()" id="submitButton" disabled>Predict Crop</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const submitButton = document.getElementById('submitButton');
+            const formFields = document.querySelectorAll('#cropForm input, #cropForm select');
+    
+            function checkFields() {
+                let allFieldsFilled = true;
+                formFields.forEach(function (field) {
+                    if (field.value.trim() === '') {
+                        document.getElementById('result').innerText = "Please fill all fields";
+                        allFieldsFilled = false;
+                    }
+                });
+    
+                submitButton.disabled = !allFieldsFilled;
+            }
+    
+            formFields.forEach(function (field) {
+                field.addEventListener('input', checkFields);
+            });
+    
+            submitButton.addEventListener('click', function () {
+                predictCrop();
+            });
+        });
+    
+        function predictCrop() {
+            var temperature = document.getElementById('temperature').value;
+            var humidity = document.getElementById('humidity').value;
+            var ph = document.getElementById('ph').value;
+            var rainfall = document.getElementById('rainfall').value;
+            var divisions = document.getElementById('divisions').value;
+            var states = document.getElementById('States').value;
+    
+            var data = {
+                "temperature": parseFloat(temperature),
+                "humidity": parseFloat(humidity),
+                "ph": parseFloat(ph),
+                "rainfall": parseFloat(rainfall),
+                "divisions": divisions,
+                "States": states
+            };
+    
+            fetch("http://127.0.0.1:5000/predict_crop", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                document.getElementById('result').innerText = "Predicted Crop: " + result.predicted_crop_label;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = "Error occurred. Please try again.";
+            });
+        }
+    </script>
+    
+</body>
+</html>
