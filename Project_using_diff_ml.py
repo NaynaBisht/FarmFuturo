@@ -9,7 +9,7 @@ from sklearn.metrics import f1_score, accuracy_score, recall_score, precision_sc
 import time
 
 # Read the dataset
-data = pd.read_csv('DataSet.csv')
+data = pd.read_csv('Data set/DataSet.csv')
 
 encoder_dict = {}
 
