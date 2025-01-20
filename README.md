@@ -112,7 +112,7 @@ Farm Futuro's successful implementation promises to drive better agricultural ou
 
 ## Get Involved
 
-Farm Futuro is open to contributions! If you're passionate about leveraging technology for sustainable agriculture or have ideas for new features, feel free to open an issue or submit a pull request. Together, we can refine and expand Farm Futuro to serve an even broader range of agricultural needs and regions.
+Farm Futuro is open to contributions!! If you're passionate about leveraging technology for sustainable agriculture or have ideas for new features, feel free to open an issue or submit a pull request. Together, we can refine and expand Farm Futuro to serve an even broader range of agricultural needs and regions.
 
 Farm Futuro isn’t just a tool—it’s a step towards a more sustainable and data-driven future in agriculture. By combining advanced machine learning with essential environmental insights, we aim to empower farmers and promote smarter, eco-friendly farming practices. We hope that Farm Futuro serves as a valuable resource and sparks innovation for a brighter agricultural future.
 
